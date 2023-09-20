@@ -1,0 +1,111 @@
+#include <SoftwareSerial.h>
+//#include "Arduino.h"
+
+const byte rxPIN = 2;
+const byte txPIN = 3;
+const byte ledPIN = 12;
+
+char val;
+
+unsigned int count = 0;
+
+SoftwareSerial BTSerial(rxPIN, txPIN);
+
+void setup() {
+  pinMode(ledPIN, OUTPUT);
+
+  Serial.begin(9600);
+  BTSerial.begin(9600);
+  
+}
+
+String messageBuffer = "";
+String message = "";
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+//  if(BTSerial.available() > 0){
+//    char c = BTSerial.read();
+//    Serial.print(c);
+//  }
+//  Serial.print(count++);
+//  delay(600);
+
+
+//  if(BTSerial.available())
+//    Serial.write(BTSerial.read());
+//  if(BTSerial.available())
+//    Serial.write(Serial.read());
+//    Serial.print("Serial works\n");
+//    BTSerial.print("BTSerial works\n");
+
+
+      //Appears to not work
+//    if (BTSerial.available() < 0)
+//      Serial.print("BTSerial is available\n");
+//    else
+//      Serial.print("BTSerial is not available.\n");
+
+
+    // Proves Serial.read() reads nothing.
+//    BTSerial.write("BT is writing");
+//    delay(1000);
+//    char data = (char) Serial.read();
+//    data += 'A';
+//    data += 1;
+//    Serial.print(data);
+
+  // Serial is available....WHEN I TYPE INTO SERIAL INTERFACE
+//  if (Serial.available())
+//    Serial.print("Serial is available\n");
+//  else
+//    Serial.print("Serial is not available\n");
+//  delay(1000);
+
+  // BTSerial is not available....WHEN I TYPE INTO CoolTerm
+//  if (BTSerial.available())
+//    Serial.print("BTSerial is available\n");
+//  else
+//    Serial.print("BTSerial is not available\n");
+//  delay(1000);
+
+
+  //Youtube Video series JESUS CHRIST HE WAS USING RX TX 0 AND 1 PORTS WHICH THE ARDUINO USES FOR SERIAL RX TX OF COURSE MY BT DIDN'T READ ANYTHING!
+//  if (Serial.available())
+//    val = Serial.read();
+//  if (val == 'H')
+//    digitalWrite(ledpin, HIGH);
+//  else
+//    digitalWrite(ledpin, LOW);
+//  delay(100);
+
+  //TRYING BT
+  if (BTSerial.available())
+    val = BTSerial.read();
+  if (val == 'H')
+    digitalWrite(ledPIN, HIGH);
+  else
+    digitalWrite(ledPIN, LOW);
+  delay(1000);
+
+  BTSerial.print("BT here");
+//OMG this works
+
+
+
+//  while(BTSerial.available()){
+//    Serial.print("BTSerial is available");
+//    char data = (char) BTSerial.read();
+//    messageBuffer += data;
+//    if (data == ';'){
+//      message = messageBuffer;
+//      Serial.print(message);
+//      message = "You sent" + message;
+//      BTSerial.print(message);
+//    }
+//  }
+  
+
+}
+
